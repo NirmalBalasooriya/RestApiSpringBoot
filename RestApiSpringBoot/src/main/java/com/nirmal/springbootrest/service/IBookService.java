@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.nirmal.springbootrest.service;
 
 import org.springframework.stereotype.Component;
