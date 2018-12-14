@@ -30,4 +30,11 @@ public interface IBookService {
 	 * @return book
 	 */
 	public Book getBook(String isbm);
+	
+
+	/**
+	 * Delete Book on database
+	 * @param isbm
+	 */
+	public void deleteBook(String isbm);
 }

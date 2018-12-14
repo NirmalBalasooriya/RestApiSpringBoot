@@ -51,4 +51,9 @@ public class BookServiceImpl implements IBookService {
 		return saveBook;
 	}
 
+	@Override
+	public void deleteBook(String isbm) {
+		bookDto.deleteByIsbmNumber(isbm);
+	}
+
 }

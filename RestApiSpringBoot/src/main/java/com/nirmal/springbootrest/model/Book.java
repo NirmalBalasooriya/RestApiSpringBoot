@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Model class for map the BOOK table using Hibernate
  * @author Nirmal Balasooriya
@@ -21,6 +23,7 @@ public class Book {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonIgnore
 	private int id;
 	@Column(name="ISBMNUMBER")
 	private String isbmNumber;
@@ -34,6 +37,7 @@ public class Book {
 	 * This is auto generated id from database
 	 * @return the id
 	 */
+	@JsonIgnore
 	public int getId() {
 		return id;
 	}
