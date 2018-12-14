@@ -1,4 +1,6 @@
-package com.nirmal.springbootres.controller;
+package com.nirmal.springbootrest.controller;
+
+import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nirmal.springbootrest.model.Book;
 import com.nirmal.springbootrest.service.IBookService;
 
@@ -66,4 +70,28 @@ public class BookStoreController {
 		return response;
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/deleteBook")
+	@ResponseBody
+	public Response<String> deleteBookInJSON(@RequestBody String isbm) throws IOException {
+		logger.info("Book selete request" + isbm);
+		ObjectMapper mapper = new ObjectMapper();
+	    JsonNode actualObj = mapper.readTree(isbm);
+		Response<String> response;
+		isbm = actualObj.get("isbm").asText();
+		if ((isbm == null) || (isbm != null && isbm.trim().isEmpty())) {
+			logger.info("Book saved fail ISBM_IS_MANDOTORY");
+			response = new Response<String>("0", "Book delete faild ISBM mandotory", null);
+		} else {
+			try {
+				iBookService.deleteBook(isbm);
+				response = new Response<String>("1", "Book delete successful", isbm);
+				logger.info("Book delete sucess" + isbm);
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error("Book delete failed" + e.getMessage());
+				response = new Response<String>("0", "Book delete fail", null);
+			}
+		}
+		return response;
+	}
 }

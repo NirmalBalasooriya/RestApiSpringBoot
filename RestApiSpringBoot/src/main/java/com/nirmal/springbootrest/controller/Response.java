@@ -1,4 +1,4 @@
-package com.nirmal.springbootres.controller;
+package com.nirmal.springbootrest.controller;
 
 /**
  * 
