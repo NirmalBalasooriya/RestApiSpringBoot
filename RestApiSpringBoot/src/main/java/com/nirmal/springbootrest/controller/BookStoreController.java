@@ -79,7 +79,7 @@ public class BookStoreController {
 		Response<String> response;
 		isbm = actualObj.get("isbm").asText();
 		if ((isbm == null) || (isbm != null && isbm.trim().isEmpty())) {
-			logger.info("Book saved fail ISBM_IS_MANDOTORY");
+			logger.info("Book delete fail ISBM_IS_MANDOTORY");
 			response = new Response<String>("0", "Book delete faild ISBM mandotory", null);
 		} else {
 			try {

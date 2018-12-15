@@ -57,5 +57,11 @@ public class Response<T> {
 		this.desc = desc;
 		this.t = t;
 	}
+	/**
+	 * 
+	 */
+	public Response() {
+		super();
+	}
 	
 }
