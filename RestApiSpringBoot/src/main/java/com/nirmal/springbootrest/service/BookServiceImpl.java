@@ -3,6 +3,7 @@ package com.nirmal.springbootrest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nirmal.springbootrest.aop.TimeTrack;
 import com.nirmal.springbootrest.dto.IBookDto;
 import com.nirmal.springbootrest.model.Book;
 
@@ -49,6 +50,7 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
+	@TimeTrack
 	public void deleteBook(String isbm) {
 		bookDto.deleteByIsbmNumber(isbm);
 	}
