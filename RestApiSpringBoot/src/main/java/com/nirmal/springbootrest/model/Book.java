@@ -3,14 +3,11 @@
  */
 package com.nirmal.springbootrest.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Date;
 
 /**
  * Model class for map the BOOK table using Hibernate
@@ -30,9 +27,17 @@ public class Book {
 	private String name;
 	private String description;
 	private String auther;
-	
 
-	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timeStamp;
+
+	@Temporal(TemporalType.DATE)
+	private Date date;
+
+	@Temporal(TemporalType.TIME)
+	private Date time;
+
+
 	/**
 	 * This is auto generated id from database
 	 * @return the id
@@ -95,8 +100,31 @@ public class Book {
 	public void setAuther(String auther) {
 		this.auther = auther;
 	}
-	
-	
+
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
 	/**
 	 * @param isbmNumber
 	 * @param name
@@ -106,9 +134,9 @@ public class Book {
 		this.isbmNumber = isbmNumber;
 		this.name = name;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @param isbmNumber
 	 * @param name

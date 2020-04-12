@@ -1,6 +1,8 @@
 package com.nirmal.springbootrest.controller;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +61,7 @@ public class BookStoreController {
 			response = new Response<String>("0", "Book save failed name mandotory", null);
 		} else {
 			try {
+				setDateTime(book);
 				String savedbook = iBookService.saveOrUpdateBook(book);
 				response = new Response<String>("1", "Book save successful", savedbook);
 				logger.info("Book saved sucess" + savedbook);
@@ -93,5 +96,12 @@ public class BookStoreController {
 			}
 		}
 		return response;
+	}
+
+	private void setDateTime(Book book){
+		Date date= Calendar.getInstance().getTime();
+		book.setTimeStamp(date);
+		book.setDate(date);
+		book.setTime(date);
 	}
 }
